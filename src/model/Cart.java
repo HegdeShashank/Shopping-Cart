@@ -1,5 +1,6 @@
 package model;
 
+import helper.CartHelper;
 import helper.ProductHelper;
 
 import java.util.ArrayList;
@@ -7,12 +8,11 @@ import java.util.List;
 
 public class Cart {
     int userID;
+    List<Products> productsList;
 
     public List<Products> getProducts() {
         return productsList;
     }
-
-    List<Products> productsList;
 
     public Cart(int userID) {
         this.userID = userID;
@@ -20,10 +20,7 @@ public class Cart {
     }
 
     void addCartItem(int productID,int noOfItems) {
-        Products inventoryItem = ProductHelper.findProductWithID(productID);
-        assert inventoryItem != null;
-        Product product = inventoryItem.getProduct();
-        Products products = new Products(product,Math.min(noOfItems,inventoryItem.getNumberOfAvailableItems()));
+        Products products = CartHelper.getCartItemToBeAdded(productID,noOfItems);
         productsList.add(products);
     }
 

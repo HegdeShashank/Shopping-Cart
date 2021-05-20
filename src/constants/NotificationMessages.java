@@ -10,4 +10,7 @@ public class NotificationMessages {
     public static final String ADD_PRODUCT_TO_CART = "Please enter product ID that needs to be added to cart";
     public static final String REMOVE_PRODUCT_TO_CART = "Please enter product ID that needs to be removed to cart";
     public static final String NO_OF_ITEMS_TO_ADD = "Please enter no of items that needs to be added";
+    public static final String PURCHASE_ACTION_GUIDANCE = "Options\n------------------------------------\n"+
+            "Enter 1 to view all products\n" + "Enter 2 to add product to cart\n" + "Enter 3 to view the cart\n"
+            +"Enter 4 to purchase product that are in the cart\n"+"Press any key to logout\n"+"------------------------------------\n";
 }

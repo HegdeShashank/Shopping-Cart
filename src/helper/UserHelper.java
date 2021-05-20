@@ -12,18 +12,14 @@ public class UserHelper {
     static Scanner in = new Scanner(System.in);
     public static void performUserActions(User user) {
         while (user.isCurrentlyLoggedIn()) {
-            System.out.println("Enter 1 to view all products");
-            System.out.println("Enter 2 to add product to cart");
-            System.out.println("Enter 3 to view the cart");
-            System.out.println("Enter 4 to purchase product that are in the cart");
-            System.out.println("Press any key to logout");
-            String userAction = in.nextLine();
+            System.out.println(NotificationMessages.PURCHASE_ACTION_GUIDANCE);
+            int userAction = in.nextInt();
             switch (userAction) {
-                case "1" : ProductHelper.displayAllProducts(); break;
-                case "2" : addProductToCart(user); break;
-                case "3":  viewCart(user); break;
-                case "4" : user.checkoutCart();break;
-                default: user.Logout();
+                case 1 -> ProductHelper.displayAllProducts();
+                case 2 -> addProductToCart(user);
+                case 3 -> viewCart(user);
+                case 4 -> user.checkoutCart();
+                default -> user.Logout();
             }
         }
 
