@@ -7,7 +7,10 @@ import model.Products;
 import model.User;
 import model.UserLogin;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,7 +54,6 @@ public class CommonUtil {
         }
         else {
             System.out.println(NotificationMessages.LOGIN_FAILURE);
-            login();
         }
     }
 
@@ -71,7 +73,7 @@ public class CommonUtil {
         return user != null && user.authenticateUser(password);
     }
 
-    public static void signUp() {
+    public static void signUp()  {
         System.out.println(NotificationMessages.ENTER_USERNAME);
         String userName = in.nextLine();
         System.out.println(NotificationMessages.ENTER_PASSWORD);
@@ -80,8 +82,22 @@ public class CommonUtil {
         String name = in.nextLine();
         System.out.println(NotificationMessages.ENTER_ADDRESS);
         String address = in.nextLine();
-        User user  = new User(1,name,address,null,new UserLogin(userName,password));
+        Date dob = acceptDOBFieldFromUser();
+        User user  = new User(getUserId(),name,address,dob,new UserLogin(userName,password));
         users.add(user);
+    }
+
+
+    static Date acceptDOBFieldFromUser() {
+        System.out.println(NotificationMessages.ENTER_DATE_OF_BIRTH);
+        try {
+            return new SimpleDateFormat("dd/MM/yyyy").parse(in.nextLine());
+        }
+        catch (ParseException ex) {
+            System.out.println(NotificationMessages.DATE_FORMAT_VALIDATION);
+            return acceptDOBFieldFromUser();
+        }
+
     }
 
     static User getUserWithUserName(String userName) {

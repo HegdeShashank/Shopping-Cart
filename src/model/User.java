@@ -1,5 +1,7 @@
 package model;
 
+import helper.ProductHelper;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -43,6 +45,7 @@ public class User {
     public void checkoutCart() {
         System.out.println(cart.getTotalValueOfCart());
         cart.removeAllFromCart();
+
     }
 
     public boolean isCurrentlyLoggedIn() {

@@ -25,15 +25,14 @@ public class Cart {
     }
 
     public void removeAllFromCart() {
+        for(Products products: productsList) {
+            ProductHelper.removeProductItemsFromInventory(products.getID(),products.getNumberOfAvailableItems());
+        }
         this.productsList = new ArrayList<>();
     }
 
     public double getTotalValueOfCart() {
-        double sum =0.0;
-        for(Products products: productsList) {
-            double productPrice = products.getPrice() * products.getNumberOfAvailableItems();
-            sum+=productPrice;
-        }
-        return sum;
+        return CartHelper.getTotalValueOfItemsInTheCart(productsList);
     }
+
 }

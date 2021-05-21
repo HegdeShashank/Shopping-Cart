@@ -1,5 +1,6 @@
 package helper;
 
+import model.Product;
 import model.Products;
 import utils.CommonUtil;
 
@@ -30,4 +31,22 @@ public class ProductHelper {
         }
         return null;
     }
+
+    public static void removeProductItemsFromInventory(int productId, int noOfItems) {
+        Products prd = findProductWithID(productId);
+        assert prd != null;
+        int availableInvItems = prd.getNumberOfAvailableItems();
+        if (availableInvItems == noOfItems) {
+            deleteProductFromInventory(productId);
+        } else {
+            prd.setNumberOfAvailableItems(availableInvItems - noOfItems);
+        }
+
+    }
+
+    public static void deleteProductFromInventory(int productId) {
+        List<Products> inventory = getAllProducts();
+        inventory.remove(findProductWithID(productId));
+    }
+
 }

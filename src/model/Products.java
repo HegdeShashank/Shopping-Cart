@@ -16,6 +16,10 @@ public class Products {
         return numberOfAvailableItems;
     }
 
+
+    public void setNumberOfAvailableItems(int numberOfAvailableItems) {
+        this.numberOfAvailableItems = numberOfAvailableItems;
+    }
     public int getID() {
         return product.getID();
     }
